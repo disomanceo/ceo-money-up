@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff7a59" />
+  <title>ceo-moneyup | วางแผนเงินเดือนครู</title>
+  <style>
+    :root{--navy:#162252;--ink:#14213d;--muted:#75809b;--bg:#fff8f4;--card:#fff;--coral:#ff6d55;--orange:#ff8a3d;--green:#189a59;--mint:#eafaf1;--purple:#7c3aed;--violet:#efe9ff;--line:#e9edf5;--shadow:0 14px 36px rgba(28,35,68,.10);--r:26px}
+    *{box-sizing:border-box} body{margin:0;font-family:"Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;background:linear-gradient(145deg,#fff7f1,#f4fbff);color:var(--ink)}
+    button,input,select{font:inherit}.app{max-width:480px;margin:auto;min-height:100vh;background:rgba(255,255,255,.82);box-shadow:0 0 60px rgba(29,44,91,.08)}
+    .hero{position:relative;overflow:hidden;padding:24px 20px 30px;background:linear-gradient(145deg,#0e513a,#177b4f 60%,#1d965b);color:#fff;border-radius:0 0 32px 32px}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}.hero:before{width:190px;height:190px;right:-70px;top:-70px}.hero:after{width:120px;height:120px;left:-55px;bottom:-55px}
+    .brand{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative;z-index:1}.title{margin:0;font-size:34px;line-height:1.05;font-weight:900;letter-spacing:-1px}.title span{display:block;color:#ffd53d}.subtitle{margin-top:10px;font-size:14px;opacity:.9}.badge{padding:7px 12px;border-radius:999px;background:linear-gradient(135deg,#ff8a65,#ff5e57);font-weight:800;font-size:12px;box-shadow:0 8px 20px rgba(255,93,83,.25)}
+    .teacher-chip{margin-top:18px;display:inline-flex;gap:8px;align-items:center;padding:9px 12px;border-radius:16px;background:rgba(255,255,255,.13);backdrop-filter:blur(8px);font-weight:700;font-size:13px}.teacher-chip i{font-style:normal;font-size:19px}
+    main{padding:18px 16px 110px}.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;margin-bottom:14px;border:1px solid rgba(230,234,244,.85)}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}.icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,#ffe6de,#fff2e6)}.section-title h2{margin:0;font-size:24px}.section-title p{margin:2px 0 0;color:var(--muted);font-size:13px}
+    .quick-grid{display:grid;grid-template-columns:1fr;gap:12px}.field{padding:14px;border-radius:20px;border:1px solid var(--line);background:#fbfcff}.label{display:flex;align-items:center;gap:7px;color:#4a5577;font-weight:700;font-size:13px;margin-bottom:8px}.control{display:flex;align-items:center;gap:8px}.control select,.control input{width:100%;border:0;outline:none;background:transparent;color:var(--navy);font-weight:900;font-size:26px}.control select{appearance:none}.suffix{font-size:13px;color:var(--muted);font-weight:800;white-space:nowrap}
+    .percent-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.pct-btn{border:1px solid #dfe5f0;background:#f7f8fc;color:var(--navy);border-radius:16px;padding:12px 6px;font-weight:900;cursor:pointer}.pct-btn.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#7d3cff,#a866ff);box-shadow:0 8px 18px rgba(124,58,237,.25)}
+    .custom-pct{margin-top:10px;display:flex;gap:8px;align-items:center;padding:10px 12px;border:1.5px dashed #cbb9f9;border-radius:16px;background:#faf7ff}.custom-pct input{width:100%;border:0;outline:0;background:transparent;font-size:20px;font-weight:900;color:var(--purple)}.hint{font-size:12px;color:var(--muted);margin-top:8px}
+    .calc-btn{margin-top:14px;width:100%;border:0;border-radius:20px;padding:15px;color:#fff;font-weight:900;font-size:20px;background:linear-gradient(135deg,var(--coral),var(--orange));box-shadow:0 12px 26px rgba(255,109,85,.3);cursor:pointer}
+    .results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.result{border-radius:20px;padding:14px 10px;min-height:128px;text-align:center}.result small{font-weight:800;color:#566079}.result b{display:block;margin-top:9px;font-size:28px;line-height:1}.result em{display:block;font-style:normal;font-size:12px;margin-top:6px}.result.raise{background:#fff0f2;color:#e63030}.result.new{background:var(--mint);color:#138b4f}.result.base{background:var(--violet);color:#7134c8}
+    .detail{margin-top:12px;padding:13px 14px;border-radius:18px;background:#f7f9fc;font-size:13px;color:#536078;line-height:1.65}.detail strong{color:var(--navy)}
+    .future-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.future-head h3{margin:0;font-size:20px}.tabs{display:flex;background:#f3f5f9;border-radius:999px;padding:4px;gap:3px}.tabs button{border:0;background:transparent;border-radius:999px;padding:7px 11px;font-weight:800;color:#707b98;cursor:pointer}.tabs button.active{background:var(--orange);color:#fff}
+    .chart{height:170px;display:flex;align-items:end;gap:12px;padding:14px 6px 4px;border-left:1px solid #e7ebf2;border-bottom:1px solid #e7ebf2;background:linear-gradient(to top,rgba(255,138,61,.08),transparent)}.bar{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:6px;height:100%}.bar .v{font-size:11px;font-weight:900;color:#4e5777}.bar .stick{width:26px;border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,#ff8a3d,#ffb166);min-height:10px}.bar .x{font-size:10px;color:#7c849c}
+    .history-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px dashed #e7ebf2;font-size:13px}.history-row:last-child{border-bottom:0}.history-row b{color:#16834d}.empty{text-align:center;color:#9097aa;padding:18px 6px;font-size:13px}
+    .footnote{font-size:11px;color:#8991a4;line-height:1.6;margin-top:10px}.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(480px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.95);backdrop-filter:blur(16px);padding:10px 8px max(12px,env(safe-area-inset-bottom));border-top:1px solid #e9edf4;z-index:20}.bottom button{border:0;background:transparent;color:#68728d;font-weight:800;font-size:11px}.bottom span{display:block;font-size:22px;margin-bottom:4px}.bottom .active{color:var(--coral)}
+    @media(min-width:430px){.quick-grid{grid-template-columns:1fr 1.35fr}.field.percent{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="brand">
+      <div>
+        <h1 class="title">วางแผน<span>เงินเดือนครู</span></h1>
+        <div class="subtitle">คำนวณง่าย • วางแผนได้ • ดูผลทันที</div>
+      </div>
+      <div class="badge">ceo-moneyup</div>
+    </div>
+    <div class="teacher-chip"><i>🎓</i> เครื่องมือคำนวณเงินเดือนข้าราชการครู</div>
+  </header>
+
+  <main>
+    <section class="card" id="calc">
+      <div class="section-title">
+        <div class="icon">🧮</div><div><h2>คำนวณเงินเดือน</h2><p>กรอกข้อมูลให้น้อยที่สุด ระบบเลือกฐานให้เอง</p></div>
+      </div>
+
+      <div class="quick-grid">
+        <div class="field">
+          <div class="label">📚 อันดับ / วิทยฐานะ</div>
+          <div class="control"><select id="rank"></select><span class="suffix">▼</span></div>
+        </div>
+        <div class="field">
+          <div class="label">💰 เงินเดือนปัจจุบัน</div>
+          <div class="control"><input id="salary" inputmode="numeric" value="52000" aria-label="เงินเดือนปัจจุบัน"><span class="suffix">บาท</span></div>
+        </div>
+        <div class="field percent">
+          <div class="label">📈 เปอร์เซ็นต์การเลื่อนเงินเดือน</div>
+          <div class="percent-wrap" id="presetPcts"></div>
+          <div class="custom-pct">
+            <span>✍️</span><input id="customPct" inputmode="decimal" placeholder="กรอก % เอง เช่น 3.25"><span class="suffix">%</span>
+          </div>
+          <div class="hint">เลือกปุ่มลัด หรือกรอกเปอร์เซ็นต์เองได้ สูงสุด 6% ต่อครั้ง</div>
+        </div>
+      </div>
+      <button class="calc-btn" id="calculate">คำนวณเลย →</button>
+    </section>
+
+    <section class="card">
+      <div class="results">
+        <div class="result raise"><small>เงินเพิ่ม</small><b id="raiseOut">1,790</b><em>บาท</em></div>
+        <div class="result new"><small>เงินเดือนใหม่</small><b id="newOut">53,790</b><em>บาท</em></div>
+        <div class="result base"><small>ฐานคำนวณ</small><b id="baseOut">59,630</b><em>บาท</em></div>
+      </div>
+      <div class="detail" id="detail"></div>
+    </section>
+
+    <section class="card" id="future">
+      <div class="future-head">
+        <div><h3>📊 จำลองอนาคต</h3><div class="hint">สมมติได้รับเปอร์เซ็นต์เดิมต่อเนื่องทุก 6 เดือน</div></div>
+        <div class="tabs"><button data-years="1" class="active">1 ปี</button><button data-years="3">3 ปี</button><button data-years="5">5 ปี</button></div>
+      </div>
+      <div class="chart" id="chart"></div>
+    </section>
+
+    <section class="card" id="history">
+      <div class="future-head"><h3>🕘 ประวัติล่าสุด</h3><button id="clearHistory" style="border:0;background:transparent;color:#d45151;font-weight:800">ล้าง</button></div>
+      <div id="historyList"></div>
+      <div class="footnote">หมายเหตุ: ตารางฐานในรุ่นต้นแบบนี้ตั้งจากตารางฐานการเลื่อนเงินเดือนที่อ้างอิงในหนังสือ ก.ค.ศ. ว5/2562 และภาพตัวอย่างที่ให้มา ควรตรวจประกาศล่าสุดก่อนใช้เป็นเอกสารทางราชการ</div>
+    </section>
+  </main>
+
+  <nav class="bottom">
+    <button class="active" data-target="calc"><span>🏠</span>หน้าแรก</button>
+    <button data-target="calc"><span>🧮</span>คำนวณ</button>
+    <button data-target="future"><span>📊</span>อนาคต</button>
+    <button data-target="history"><span>🕘</span>ประวัติ</button>
+  </nav>
+</div>
+<script>
+const TABLE={
+  'ครูผู้ช่วย':[{min:19910,max:24750,base:22330},{min:15050,max:19900,base:17480}],
+  'คศ.1':[{min:24890,max:34310,base:29600},{min:15440,max:24880,base:22780}],
+  'คศ.2':[{min:30210,max:41620,base:35270},{min:16190,max:30200,base:30200}],
+  'คศ.3':[{min:40280,max:58390,base:49330},{min:19860,max:40270,base:37200}],
+  'คศ.4':[{min:50330,max:69040,base:59630},{min:24400,max:50320,base:50320}],
+  'คศ.5':[{min:60840,max:76800,base:68560},{min:29980,max:60830,base:60830}]
+};
+const $=s=>document.querySelector(s); const fmt=n=>Math.round(n).toLocaleString('th-TH');
+const rank=$('#rank'),salary=$('#salary'),customPct=$('#customPct'),presets=[2.5,3,3.5,4]; let currentPct=3,currentYears=1;
+Object.keys(TABLE).forEach(r=>rank.add(new Option(r,r))); rank.value='คศ.4';
+const presetBox=$('#presetPcts'); presets.forEach(p=>{const b=document.createElement('button');b.className='pct-btn'+(p===3?' active':'');b.textContent=p+'%';b.onclick=()=>{currentPct=p;customPct.value='';[...presetBox.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');calculate(false)};presetBox.appendChild(b)});
+customPct.addEventListener('input',()=>{let v=parseFloat(customPct.value);if(Number.isFinite(v)){currentPct=Math.min(6,Math.max(0,v));[...presetBox.children].forEach(x=>x.classList.remove('active'));calculate(false)}});
+salary.addEventListener('input',()=>{salary.value=salary.value.replace(/[^0-9]/g,'');calculate(false)});rank.addEventListener('change',()=>calculate(false));
+function getBand(r,s){return TABLE[r].find(x=>s>=x.min&&s<=x.max)||TABLE[r].slice().sort((a,b)=>Math.abs(s-((a.min+a.max)/2))-Math.abs(s-((b.min+b.max)/2)))[0]}
+function roundTenUp(v){return Math.ceil(v/10)*10}
+function calcValues(s=Number(salary.value||0),p=currentPct,r=rank.value){const band=getBand(r,s);const inc=roundTenUp(band.base*(p/100));return{salary:s,pct:p,band,inc,newSalary:s+inc}}
+function calculate(save=true){let s=Number(salary.value||0);if(!s)return;const v=calcValues();$('#raiseOut').textContent=fmt(v.inc);$('#newOut').textContent=fmt(v.newSalary);$('#baseOut').textContent=fmt(v.band.base);$('#detail').innerHTML=`<strong>${rank.value}</strong> • ช่วง ${fmt(v.band.min)}–${fmt(v.band.max)} บาท<br>ฐานคำนวณ <strong>${fmt(v.band.base)}</strong> บาท × <strong>${v.pct}%</strong> = ${fmt(v.band.base*(v.pct/100))} บาท<br>ปัดเศษขึ้นเป็นหลักสิบ = <strong>${fmt(v.inc)} บาท</strong> • เงินเดือนใหม่ <strong>${fmt(v.newSalary)} บาท</strong>`;renderChart();if(save){saveHistory(v);renderHistory()}}
+function projectOnce(s,p,r){const b=getBand(r,s);return s+roundTenUp(b.base*(p/100))}
+function renderChart(){let n=Math.max(1,currentYears*2),s=Number(salary.value||0),pts=[s];for(let i=0;i<n;i++){s=projectOnce(s,currentPct,rank.value);pts.push(s)}const min=Math.min(...pts),max=Math.max(...pts),span=Math.max(1,max-min);const chart=$('#chart');chart.innerHTML='';pts.filter((_,i)=>i===0||i===pts.length-1||i%Math.ceil(pts.length/4)===0).forEach((v,i,arr)=>{const h=45+((v-min)/span)*85;const d=document.createElement('div');d.className='bar';d.innerHTML=`<div class="v">${fmt(v)}</div><div class="stick" style="height:${h}px"></div><div class="x">${i===0?'ปัจจุบัน':i===arr.length-1?currentYears+' ปี':'ช่วง '+i}</div>`;chart.appendChild(d)})}
+function saveHistory(v){const key='ceo-moneyup-history';let h=JSON.parse(localStorage.getItem(key)||'[]');h.unshift({date:new Date().toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'}),rank:rank.value,salary:v.salary,newSalary:v.newSalary,inc:v.inc,pct:v.pct});h=h.slice(0,8);localStorage.setItem(key,JSON.stringify(h))}
+function renderHistory(){const h=JSON.parse(localStorage.getItem('ceo-moneyup-history')||'[]');const box=$('#historyList');if(!h.length){box.innerHTML='<div class="empty">ยังไม่มีประวัติการคำนวณ</div>';return}box.innerHTML=h.map(x=>`<div class="history-row"><span>${x.date}<br><small>${x.rank} • ${x.pct}%</small></span><span>${fmt(x.salary)} → ${fmt(x.newSalary)}</span><b>+${fmt(x.inc)}</b></div>`).join('')}
+$('#calculate').onclick=()=>calculate(true);$('#clearHistory').onclick=()=>{localStorage.removeItem('ceo-moneyup-history');renderHistory()};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');currentYears=Number(b.dataset.years);renderChart()});
+document.querySelectorAll('.bottom button').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth',block:'start'}));
+calculate(false);renderHistory();
+</script>
+</body></html>
